@@ -1,0 +1,48 @@
+extends layout 
+
+block content
+    -data = data || {}
+    -page_count = page_count || 1
+
+    if errors 
+        ul 
+            for error in errors 
+                li 
+                    = error.msg 
+
+    form(action="." method="POST")
+        .row(class="m-3")
+            label(for="name", class = "col-sm-1 col-form-label") Username:
+            .col-sm-6
+                input(
+                    type="text",
+                    id="name",
+                    name="name",
+                    class="form-control",
+                    placeholder="Username",
+                    required,
+                    pattern="[A-Za-z]+",
+                    value=data.name
+                )
+
+        .row(class="m-3")
+            label(for="post", class = "col-sm-1 col-form-label") Post:
+            .col-sm-6
+                textarea(
+                    id="post",
+                    name="post",
+                    class="form-control",
+                    cols="30",
+                    rows="10",
+                    required,
+                    minlength="1"
+                ) 
+        .col-auto
+            button(type="submit", class="btn btn-primary align-middle") Publish
+
+    include ./posts.pug
+    include ./navbar_plain.pug
+    include ./scripts.pug
+
+
+    

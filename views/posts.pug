@@ -1,0 +1,12 @@
+-records = records || {}
+
+.container 
+    .col-sm-8 
+        h1 Posts 
+        each post in records
+            .row
+                .comment(class="text-justify mt-4 float-left") 
+                    h4
+                        =post.Username 
+                    p  
+                        =post.Post

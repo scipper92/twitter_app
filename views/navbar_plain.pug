@@ -1,0 +1,28 @@
+-page_btn_count = page_btn_count || 3 
+-page = page || 1
+-page_count = page_count || 1
+
+nav(aria-label="Page naviagation")
+    ul.pagination
+        -if (page > 1)
+            -var pageURL = "?page="+(page-1)
+            li.page-item 
+                a.page-link(href=pageURL) Previous 
+        -else
+            li.page-item.disabled 
+                a.page-link(href="#") Previous
+        -for(i=page;i<=page_count && i<page+page_btn_count;i++)
+            -var pageURL = "?page="+i
+            li.page-item 
+                a.page-link(href=pageURL) #{i} 
+        -for(;i<page+page_btn_count;i++)
+            li.page-item.disabled
+                a.page-link(href="#") #{i}
+        -if(page_count>page)
+            -var pageURL = "?page="+(page+1)
+            li.page-item 
+                a.page-link(href=pageURL) Next
+        -else
+            li.page-item.disabled 
+                a.page-link(href="#") Next 
+        
